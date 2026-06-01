@@ -25,3 +25,9 @@ output "private_subnet_id" {
 output "rds_endpoint" {
   value = module.database.rds_endpoint
 }
+
+#step-4  adding ec2 instances
+
+output "app_private_ip" {
+  value = module.compute.private_ip
+}

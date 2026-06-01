@@ -58,3 +58,11 @@ variable "db_name" {
   type        = string
   default     = "appdb"
 }
+
+#step-4 adding ec2 instances 
+
+variable "key_name" {
+  description = "Name of an existing EC2 Key Pair to enable SSH access"
+  type        = string
+  default     = "bootcamp-key"
+}

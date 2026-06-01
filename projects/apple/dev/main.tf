@@ -22,3 +22,15 @@ module "database" {
   db_password            = var.db_password
   db_name                = var.db_name
 }
+
+#step-4 adding ec2 instances 
+
+module "compute" {
+  source = "./compute"
+
+  private_subnet_id     = module.network.private_subnet_id
+  web_security_group_id = module.network.web_security_group_id
+  project_name          = var.project_name
+  environment           = var.environment
+  key_name              = var.key_name
+}
