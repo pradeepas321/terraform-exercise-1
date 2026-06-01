@@ -1,0 +1,41 @@
+#step-2.2 after adding internet gw, nat gateway adding route tables
+
+# Public Route Table (sends all internet-bound traffic to IGW)
+resource "aws_route_table" "public" {
+  vpc_id = aws_vpc.main.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.main.id
+  }
+
+  tags = {
+    Name = "apple_dev_public_rt"
+  }
+}
+
+# Associate the public subnet with the public route table
+resource "aws_route_table_association" "public" {
+  subnet_id      = aws_subnet.public.id
+  route_table_id = aws_route_table.public.id
+}
+
+# Private Route Table (sends all internet-bound traffic to NAT Gateway)
+resource "aws_route_table" "private" {
+  vpc_id = aws_vpc.main.id
+
+  route {
+    cidr_block     = "0.0.0.0/0"
+    nat_gateway_id = aws_nat_gateway.main.id
+  }
+
+  tags = {
+    Name = "apple_dev_private_rt"
+  }
+}
+
+# Associate the private subnet with the private route table
+resource "aws_route_table_association" "private" {
+  subnet_id      = aws_subnet.private.id
+  route_table_id = aws_route_table.private.id
+}

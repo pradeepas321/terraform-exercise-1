@@ -4,6 +4,7 @@ terraform {
     key            = "apple/dev/terraform.tfstate"
     region         = "ap-south-1"
     encrypt        = true
-    dynamodb_table = "terraform-locks-apple-dev"   # Replace with your DynamoDB table name
+    use_lockfile   = true
+    #dynamodb_table = "terraform-locks-apple-dev"   # Replace with your DynamoDB table name
   }
 }

@@ -21,7 +21,3 @@ output "private_subnet_id" {
   value       = module.network.private_subnet_id
 }
 
-output "internet_gateway_id" {
-  description = "ID of the Internet Gateway"
-  value       = module.network.internet_gateway_id
-}
