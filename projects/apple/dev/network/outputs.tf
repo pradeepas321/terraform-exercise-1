@@ -17,7 +17,7 @@ output "private_subnet_id" {
   value = aws_subnet.private.id
 }
 
-#step-2.1 
+#step-2.2
 #create internet gateway, elastic IP and nat gatway 
 
 output "internet_gateway_id" {
@@ -44,4 +44,13 @@ output "public_route_table_id" {
 
 output "private_route_table_id" {
   value = aws_route_table.private.id
+}
+
+##step 2.3, after adding igw, eip and nat gw and adding route tables, you add security groups
+output "web_security_group_id" {
+  value = aws_security_group.web.id
+}
+
+output "rds_security_group_id" {
+  value = aws_security_group.rds.id
 } 
