@@ -21,3 +21,7 @@ output "private_subnet_id" {
   value       = module.network.private_subnet_id
 }
 
+#step 3 create databases 
+output "rds_endpoint" {
+  value = module.database.rds_endpoint
+}

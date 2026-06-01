@@ -36,3 +36,25 @@ variable "apple_dev_pvt_net" {
   type        = string
   default     = "172.12.2.0/24"
 }
+
+##step-3 creating rds databases
+
+# RDS related variables
+variable "db_username" {
+  description = "Master username for PostgreSQL"
+  type        = string
+  default     = "dbadmin"
+}
+
+variable "db_password" {
+  description = "Master password for PostgreSQL (sensitive)"
+  type        = string
+  sensitive   = true
+  default     = "ChangeMeNow123!"
+}
+
+variable "db_name" {
+  description = "Initial database name"
+  type        = string
+  default     = "appdb"
+}
