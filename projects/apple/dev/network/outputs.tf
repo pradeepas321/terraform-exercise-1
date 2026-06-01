@@ -59,3 +59,8 @@ output "rds_security_group_id" {
 output "private_subnet_ids" {
   value = [aws_subnet.private.id, aws_subnet.private_2.id]
 }
+
+#step-5 adding eic details
+output "eic_endpoint_id" {
+  value = aws_ec2_instance_connect_endpoint.eic.id
+}

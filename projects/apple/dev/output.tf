@@ -31,3 +31,9 @@ output "rds_endpoint" {
 output "app_private_ip" {
   value = module.compute.private_ip
 }
+
+#step-5 getting eip details 
+
+output "eic_endpoint_id" {
+  value = module.network.eic_endpoint_id   # we need to expose it from network module
+}

@@ -66,3 +66,11 @@ variable "key_name" {
   type        = string
   default     = "bootcamp-key"
 }
+
+#step-5 adding EIC end point variables
+
+variable "my_ip" {
+  description = "My public IP address (with /32) for SSH access via EIC endpoint"
+  type        = string
+  default     = "106.51.140.161/32"   # Replace with your actual IP, e.g., "203.0.113.5/32"
+}

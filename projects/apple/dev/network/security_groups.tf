@@ -13,11 +13,27 @@ resource "aws_security_group" "web" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+#i don think this is required but adding it anyway as part of step-5
+  ingress {
+    description     = "SSH from EIC endpoint"
+    from_port       = 22
+    to_port         = 22
+    protocol        = "tcp"
+    security_groups = [aws_security_group.eic.id]
+  }
 
   ingress {
     description = "HTTP from anywhere"
     from_port   = 80
     to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "Flask app from anywhere"
+    from_port   = 8080
+    to_port     = 8080
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -67,5 +83,33 @@ resource "aws_security_group" "rds" {
 
   tags = {
     Name = "apple_dev_rds_sg"
+  }
+}
+
+#step-5 adding end point security groups
+
+# Security group for the EIC endpoint itself
+resource "aws_security_group" "eic" {
+  name        = "${var.project_name}-${var.environment}-eic-sg"
+  description = "Allow SSH from my IP to the endpoint"
+  vpc_id      = aws_vpc.main.id
+
+  ingress {
+    description = "SSH from my public IP"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = [var.my_ip]   # variable you'll define (see step 4)
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "${var.project_name}-${var.environment}-eic-sg"
   }
 }

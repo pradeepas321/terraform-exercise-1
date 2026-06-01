@@ -8,6 +8,7 @@ module "network" {
   apple_dev_net       = var.apple_dev_net
   apple_dev_pub_net   = var.apple_dev_pub_net
   apple_dev_pvt_net   = var.apple_dev_pvt_net
+  my_ip               = var.my_ip   #added in step-5
 }
 
 #step-3 for creating RDS databases

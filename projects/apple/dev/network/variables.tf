@@ -21,3 +21,7 @@ variable "apple_dev_pub_net" {
 variable "apple_dev_pvt_net" {
   type = string
 }
+#step-5 adding EIC
+variable "my_ip" {
+  type = string
+}
